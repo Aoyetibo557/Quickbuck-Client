@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Getting Started with this Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Start your apache and mysql in xampp
+make sure mysql is running on the same port as your database.
+
+## In api:
+
+### `npm install sequelize cors mysql express --save`
 
 ## Available Scripts
 

@@ -1,0 +1,27 @@
+
+
+.dropdownmenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownmenu__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    top: 190px;
+    right: 130px;
+    width: 100vw;
+    height: 300px;
+    color: #fff;
+    background-color: #000;
+}
+
+.dropdownmenu__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

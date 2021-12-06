@@ -1,0 +1,101 @@
+
+.job {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.job__top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job__author {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.job__name {
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.job__location {
+    font-size: 13px;
+}
+
+
+.job__descp {
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.job__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job__links,.job__btn {
+    width: 150px;
+    padding: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 300;
+    
+}
+
+.job__links:active {
+    transform: scale(.75);
+    transition: all ease .3s;
+}
+
+
+.job__price {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+
+.job__tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 70%;
+    margin-top: 10px;
+}
+
+.job__tags span {
+    padding: 5px;
+    font-size: 11px;
+    font-weight: 400;
+    background-color: #ddd;
+    border: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.btn-icon {
+    margin-left: 20px;
+}
+
+.job__img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 999px;
+    border: 1px solid #999;
+    margin-right: 20px;
+}

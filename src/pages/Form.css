@@ -1,0 +1,53 @@
+
+
+.form__link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.btn {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:active {
+    transform: scale(.75);
+    transition: all ease .3s;
+}
+
+.primary {
+    width: 100%;
+    color: #fff;
+    background-color: red;
+}
+
+.secondary {
+     color: #fff;
+    background-color: red;
+}
+
+.err__box {
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    color: red;
+    background-color: #ddd;
+}
+
+@media only screen and (max-width: 764px) {
+
+    .primary {
+        width: 80vw;
+    }
+}

@@ -1,25 +1,73 @@
-import logo from './logo.svg';
+import React,{ useEffect } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Loginpage from './pages/Loginpage';
+import ForgotPassword from './pages/ForgotPassword';
+import Token from './Token';
+// import PrivateRoute from './components/PrivateRoute';
+import SignUpPage from './pages/SignUpPage';
+import { createBrowserHistory } from 'history';
+import HomeComponent from './components/HomeComponent';
+import NewJob from './pages/NewJob';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import MyJobs from './pages/MyJobs';
+
+
+
 
 function App() {
+
+  const {acctToken} = Token();
+
+  useEffect(() => {
+    console.log(acctToken)
+  },[acctToken])
+
+  const history = createBrowserHistory()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Router history={history} >
+        <Switch>
+
+          <Route exact path="/" >
+            {!acctToken ? <Loginpage /> : <HomeComponent /> }
+          </Route>
+
+          <Route exact path="/home" >
+            {!acctToken ? <Loginpage /> : <HomeComponent /> }
+          </Route>
+
+          <Route exact path="/home/:jobId" >
+            {!acctToken ? <Loginpage /> : <HomeComponent /> }
+          </Route>
+         
+          <Route exact path ="/signup" component={SignUpPage} />
+          <Route exact path ="/forgot" component={ForgotPassword} />  
+
+          <Route exact path="/createjob" >
+            {!acctToken ? <Loginpage /> : <NewJob /> }
+          </Route>
+
+          <Route exact path="/profile" >
+            {!acctToken ? <Loginpage /> : <Profile /> }
+          </Route>
+
+          <Route exact path="/settings" >
+            {!acctToken ? <Loginpage /> : <Settings /> }
+          </Route>
+
+          <Route exact path="/myjobs" >
+            {!acctToken ? <Loginpage /> : <MyJobs /> }
+          </Route>
+
+        </Switch>
+      
+      </Router>
     </div>
   );
 }
 
 export default App;
+

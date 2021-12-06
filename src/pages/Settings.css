@@ -1,0 +1,199 @@
+
+
+.setting__container {
+    display: grid;
+    grid-template-columns: auto auto;
+    place-items: center;
+}
+
+.setting__acct {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting__acct h4 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.setting__acct div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: whitesmoke;
+    padding: 10px;
+    width: 20vw;
+    border-radius: 7px;
+
+}
+
+.acct-img {
+    border-radius: 999px;
+}
+
+.setting__acct div p {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting__acct .name-span{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.setting__acct .logout-span {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.logout-span button{
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Setting Preferences */
+
+.setting__preferences {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting__preferences h4 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.preference__div {
+    display: flex;
+    flex-direction: column;
+}
+
+.preference__div div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.preference__div div p {
+    margin-left: 10px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.setting__status {
+    display: flex;
+    flex-direction: column;
+}
+
+.status__descp {
+    width: 380px;
+}
+
+.setting__status h4 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;   
+}
+
+.setting__status div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.status__descp p {
+    font-weight: 400;
+    font-size: 16px;
+    word-spacing: 1.5px;
+    color: #888;
+}
+.status__toggle p {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.setting__payment {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting__payment h4 {
+     font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;   
+}
+
+.setting__payment div{
+    width: 300px;
+}
+
+.payment__btn {
+    font-size: 15px;
+    border: none;
+    color: #0d8abc;
+    background: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.setting__username{ 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 45%;
+}
+
+.setting__username h4 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+}
+
+.setting__username div {
+    background: whitesmoke;
+    width: 100%;
+    padding: 10px;
+    border-radius: 999px;
+}
+
+.setting__username div p {
+    font-weight: 500;
+    font-size: 17px;
+    padding-left: 20px;
+    opacity: 0.7;
+}
+
+.setting__jobs {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting__jobs h4 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.setting__jobs div{
+    width: 320px;
+}
+
+.setting__jobs div p {
+    word-spacing: 1.5px;
+    font-size: 15px;
+    color: #888;
+}
