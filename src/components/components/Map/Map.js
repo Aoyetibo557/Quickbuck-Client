@@ -11,7 +11,6 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
     const classes = useStyles();
     const isDesktop = useMediaQuery('(min-width:600px)');
 
-    // const coordinates = { lat: 0, lng: 0};
 
     return(
         <div className={classes.mapContainer} >
@@ -68,13 +67,7 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
                     </div>
                 ))}
             </GoogleMapReact>
-            {/* <GoogleMapReact
-                bootstrapURLKeys = {{ key : 'AIzaSyAsiey1SMwJZPItXSjAGKWZ87i9EvkV0-0'}}
-                defaultCenter
-            >
-                
-            </GoogleMapReact> */}
-
+        
         </div>
     );
 }

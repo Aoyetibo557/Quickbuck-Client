@@ -3,7 +3,6 @@ import './HomeComponenet.css';
 import Header from './Header';
 import axios from 'axios';
 import Job from './Job';
-import Map from './Map';
 import { useAuth } from '../contexts/AuthContext';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -11,14 +10,33 @@ import PlugImage from '../assets/images/plug.svg';
 import JobDetails from './JobDetails';
 import { useParams } from 'react-router-dom';
 
+import List from "../components/components/List/List"
+import { Grid } from '@mui/material';
+import Map from "../components/components/Map/Map";
+import Geocode from "react-geocode";
 // const baseURL = "http://localhost:9090/api";
 const baseURL = "https://quickbuck-api.herokuapp.com/api";
+
+Geocode.setApiKey("AIzaSyAsiey1SMwJZPItXSjAGKWZ87i9EvkV0-0");
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+// set response region. Its optional.
+// A Geocoding request with region=es (Spain) will return the Spanish city.
+Geocode.setRegion("us");
+Geocode.setLocationType("ROOFTOP");
+Geocode.enableDebug();
 
 
 function HomeComponent() {
     const [allData, setAllData] = useState([]);
     const [filteredData, setFilteredData] = useState(allData);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [coordinates, setCoordinates] = useState({});
+    const [county, setCounty] = useState({});
+    const [bounds, setBounds] = useState({});
+    const [long, setLong] = useState({});
+    const [lati, setLati] = useState({});
 
     const { setJobs } = useAuth(); //Context 
     
@@ -60,11 +78,73 @@ function HomeComponent() {
        
     }
 
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
+        setLong(longitude);
+        setLati(latitude);
+        setCoordinates({lat : latitude, lng : longitude});
+        })
+    }, []);
+
+    useEffect(() => {
+    console.log(coordinates,bounds);
+    ////
+  // function getCounty(latti,lngi) {
+  //   console.log("Hi");
+  //   console.log(latti,lngi);
+    let city, state, country;
+    let countyName;
+    // let county = "Kings County"
+    Geocode.fromLatLng( lati, long) 
+    .then(response => {
+        // const address = response.results[0].formatted_address;
+        // let city, state, country, county;
+        for (let i = 0; i < response.results[0].address_components.length; i++) {
+          for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+            switch (response.results[0].address_components[i].types[j]) {
+              case "locality":
+                city = response.results[0].address_components[i].long_name;
+                break;
+              case "administrative_area_level_1":
+                state = response.results[0].address_components[i].long_name;
+                break;
+              case "administrative_area_level_2":
+                countyName = response.results[0].address_components[i].long_name;
+                // setCounty(ccounty);
+                console.log(countyName);
+                setCounty(countyName);
+                // county = "Queens County";
+                break;
+              case "country":
+                country = response.results[0].address_components[i].long_name;
+                break;
+                default:
+                    break;
+            }
+          }
+        }
+    });
+  //   console.log("city");
+    console.log("again"+county);
+  //   return county;
+    
+  //   // alert("Hellooo");
+  //   // return "Queens County";
+  // }
+    ////
+    getJobsData(county)
+      .then((data) => {
+        console.log(data);
+        setJobs(data);
+      })
+  }, [coordinates, bounds]);
+
    
 
     return (
         <div className="homecomp">
             <Header />
+            
             <div className="home__top">
                 <div className="home__search">
                     <input className="search__bar" type="text" onChange={(event) =>handleSearch(event)} placeholder="Long Island, NY" />
@@ -123,12 +203,31 @@ function HomeComponent() {
 
                             </div>
                         }
+
+                        
                     </div>
                 )}
 
+                <List />
                 <div>
-                    {/* <Map /> */}
-                    <JobDetails jobId={jobId}/>
+                    {/* <JobDetails jobId={jobId}/> */}
+
+                    <Grid container spacing={3} style = {{ width: '100%' }}> 
+                        <Grid item xs={12} md={6}  >
+                            {/* console.log("hello"); */}
+                            <List jobs = {allData} />
+                        </Grid>
+                        <Grid item xs={12} md={6}  >
+                        <Map
+                            
+                            setCoordinates= {setCoordinates}
+                            setBounds = {setBounds}
+                            coordinates = {coordinates}
+                            jobs = {allData}
+                        />
+                    </Grid>
+                </Grid>
+
                 </div>
            </div>
 
