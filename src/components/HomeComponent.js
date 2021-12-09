@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import PlugImage from '../assets/images/plug.svg';
 import JobDetails from './JobDetails';
 import { useParams } from 'react-router-dom';
+import {getJobsData} from './api' ;
 
 import List from "../components/components/List/List"
 import { Grid } from '@mui/material';
