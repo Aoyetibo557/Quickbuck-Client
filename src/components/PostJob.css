@@ -1,14 +1,14 @@
 
 
-.newjob__container {
+.postjob__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 700px;
+    height: 100%;
 }
 
-.newjob__h4{
+.postjob__h4{
     margin-top: 5px;
     font-size: 1.5rem;
     font-weight: 400;
@@ -16,12 +16,12 @@
     text-align: center;
 }
 
-.newjob__form {
+.postjob__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
+    height: 700px;
     margin-top: 10px;
 }
 
@@ -30,23 +30,23 @@
     flex-direction: column;
 }
 
-.newjob__label {
+.postjob__label {
     font-size: 14px;
     font-weight: 400;
 }
 
-.newjob__input {
+.postjob__input {
     padding: 10px;
     width: 500px;
     border: .7px solid #000;
 }
 
-.newjob__input-entry{
+.postjob__input-entry{
     width: 130px;
     padding: 10px;
     border: .7px solid #000;
 }
-.newjob__textarea {
+.postjob__textarea {
     resize: none;
     padding: 8px;
     width: 500px;
@@ -56,19 +56,19 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-.newjob__form-innerdiv {
+.postjob__form-innerdiv {
     display: flex;
     flex-direction: row !important;
 }
 
-.newjob__select {
+.postjob__select {
     width: 200px;
     padding: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.newjob__btn {
+.postjob__btn {
     font-size: 15px;
     color: #fff;
     background-color: red;
@@ -78,11 +78,11 @@
     cursor: pointer;
 }
 
-.newjob__btn:active {
+.postjob__btn:active {
     transform: scale(.75);
 }
 
-.newjob__error {
+.postjob__error {
      display: flex;
     align-items: center;
     justify-content: center;
@@ -90,7 +90,7 @@
 
 }
 
-.newjob__error p {
+.postjob__error p {
     padding: 10px;
     color: red;
     font-size: 1rem;
@@ -112,6 +112,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.card__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .addcard {
     display: flex;
@@ -154,6 +159,7 @@ input::-webkit-inner-spin-button {
 .double-card__div {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }

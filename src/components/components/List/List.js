@@ -9,23 +9,10 @@ const List = ({jobs}) => {
     const [type,setType] = useState('week');
     const [preference, setPreference] = useState('all');
 
-    // const jobs = [
-    //     {title: 'Handy Man'},
-    //     {title: 'Shop Keeper'},
-    //     {title: 'IT Specialist'},
-    //     {title: 'Handy Man'},
-    //     {title: 'Shop Keeper'},
-    //     {title: 'IT Specialist'},
-    //     {title: 'Handy Man'},
-    //     {title: 'Shop Keeper'},
-    //     {title: 'IT Specialist'},
-
-    // ];
-
+  
     return(
         <div className={classes.container}>
             <Typography variant="h4">Jobs near you</Typography>
-            {/* filterring the time period of the jobs */}
             <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
                 <Select value={type} onChange={(e)=> setType(e.target.value)} >
@@ -34,7 +21,6 @@ const List = ({jobs}) => {
                     <MenuItem value="moreMonth">More than a month</MenuItem>
                 </Select>
             </FormControl>
-            {/* Filtering the job List */}
             <FormControl className={classes.formControl}>
                 <InputLabel>Filter</InputLabel>
                 <Select value={preference} onChange={(e)=> setPreference(e.target.value)} >
@@ -49,8 +35,9 @@ const List = ({jobs}) => {
                     
                     <Grid item key={i} xs={12}>
                         <PlaceDetails job={job}/>
+                       
                     </Grid>
-                ))}
+                )).reverse()}
             </Grid>
 
         </div>

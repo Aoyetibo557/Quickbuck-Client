@@ -44,7 +44,7 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
                                         <img
                                             style ={{ height : 35 , width : 35  }}
                                             className = {classes.pointer}
-                                            src ={job.pictures.profile ? job.pictures.profile :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1K6lHdNDXgkXbupvpgP8a7P_nwu06tNZmnnYCJOuNiczwcftvCNQDfU90IYtl-8m3Lws&usqp=CAU'}
+                                            src ={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1K6lHdNDXgkXbupvpgP8a7P_nwu06tNZmnnYCJOuNiczwcftvCNQDfU90IYtl-8m3Lws&usqp=CAU'}
                                             alt = {job.name}
                                         /> &nbsp;&nbsp;
                                         {/* <Rating size="small" value= {Number(job.rating)} readOnly /> */}

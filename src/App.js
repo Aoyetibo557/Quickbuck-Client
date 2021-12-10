@@ -21,7 +21,8 @@ function App() {
   const {acctToken} = Token();
 
   useEffect(() => {
-    console.log(acctToken)
+    console.log(acctToken);
+    // console.clear();
   },[acctToken])
 
   const history = createBrowserHistory()
