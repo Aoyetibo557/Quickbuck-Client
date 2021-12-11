@@ -18,8 +18,9 @@ import Map from "../components/components/Map/Map";
 import Geocode from "react-geocode";
 
 
-const baseURL = "http://localhost:9090/api";
-// const baseURL = "https://quickbuck-api.herokuapp.com/api";
+// const baseURL = "http://localhost:9090/api";
+const baseURL = "https://quickbuck-api.herokuapp.com/api";
+// const baseURL = "https://testapijobslocation.herokuapp.com/jobs";
 
 Geocode.setApiKey("AIzaSyAsiey1SMwJZPItXSjAGKWZ87i9EvkV0-0");
 // set response language. Defaults to english.
@@ -43,35 +44,20 @@ function HomeComponent() {
     const [lati, setLati] = useState({});
 
     const { setJobs } = useAuth(); //Context 
+    const [childClicked, setChildClicked] = useState(null);
     
 
-    useEffect(() => {
-        retrieveData();
-        setTimeout(()=>{
-            setIsLoading(false);
-        },  5000)
-    }, [])
-
-    // The username should be changes to title when the table has been created fpr the 
-    // Filter to seach by job title not username
-    const handleSearch = (event) => {
-        let value = event.target.value.toLowerCase();
-        let result = [];
-
-        result = allData.filter((data) => {
-            return data.name.search(value) !== -1 || data.author.search(value) !== -1;
-        });
-
-        setFilteredData(result);
-    }
 
 
     // Retrieve the data dfrom the right table
     // Currently using profiles table for filter test! 
     // .jobs is added at the end of data because in the conroller, i resturn the data in a json format 
     // with a message asttached, so to add only the jobs into the data states here, .jobs is added
-    const retrieveData = () => {
-        const URL = `${baseURL}/jobs/all`;
+    const retrieveData = (countyN) => {
+        console.log("countyN" +countyN);
+        // const URL = `${baseURL}/jobs/all`;
+        // const URL = `${baseURL+county}`;
+        const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
         axios(URL)
         .then(response => {
             setAllData(response.data.jobs)
@@ -83,18 +69,19 @@ function HomeComponent() {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
+     
+        setCoordinates({lat : latitude, lng : longitude});
         setLong(longitude);
         setLati(latitude);
-            setCoordinates({lat : latitude, lng : longitude});
         })
-    }, []);
+    }, [coordinates.lat,coordinates.lng  ]);
 
     useEffect(() => {
     console.log(coordinates,bounds);
    
     let city, state, country;
     let countyName;
-    Geocode.fromLatLng( lati, long) 
+    Geocode.fromLatLng( coordinates.lat,coordinates.lng) 
     .then(response => {
 
         for (let i = 0; i < response.results[0].address_components.length; i++) {
@@ -108,26 +95,25 @@ function HomeComponent() {
                 break;
               case "administrative_area_level_2":
                 countyName = response.results[0].address_components[i].long_name;
-                console.log(countyName);
+                console.log("countyName" +countyName);
                 setCounty(countyName);
                 break;
               case "country":
                 country = response.results[0].address_components[i].long_name;
                 break;
-                default:
+            default:
                     break;
             }
           }
         }
     });
-    console.log("again"+county);
- 
-    getJobsData(county)
-      .then((data) => {
-        console.log(data);
-        setJobs(data);
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // console.log(countyName)
+
+    // /queens /Queens County
+
+
+    console.log("again"+countyName);
+    retrieveData(county);
   }, [coordinates, bounds]);
 
    
@@ -136,58 +122,12 @@ function HomeComponent() {
         <div className="homecomp">
             <Header />
             
-            <div className="home__top">
-                <div className="home__search">
-                    <input className="search__bar" type="text" onChange={(event) =>handleSearch(event)} placeholder="Long Island, NY" />
-                </div>
-
-              
-                <div>
-                    <select className="search__select">
-                        <option value="">Filter</option>
-                        <option value="price">Price</option>
-                        <option value="distance">Distance</option>
-                    </select>
-                </div>
-            </div>
-
-            {/* Error warpping */}
-            {allData.length < 1 ?(
-                <h3>No data found</h3>
-            ):(
-                <div className="home__body">
-                    <div  className="home__results">
-                        {filteredData.map((job,index) => (
-                            <Job 
-                                key = {job.id}
-                                jobId = {job.jobId}
-                                name= {job.name}
-                                location={job.joblocation}
-                                price={job.price}
-                                descp ={job.description}
-                                author={job.author}
-                                status={job.jobstatus}
-                                tags = {job.tags}
-                                county_name = {job.county_name}
-                                website = {job.website}
-                                rating = {job.rating}
-                            />
-                        )).reverse()}
-                    </div>
-
-                    <div>
-                        <Map
-                            setCoordinates= {setCoordinates}
-                            setBounds = {setBounds}
-                            coordinates = {coordinates}
-                            jobs = {allData}
-                        />
-                    </div>
-                
-
-                        {/* <Grid container spacing={3} style = {{ width: '100%' }}> 
-                            <Grid item xs={3} md={6}  >
-                                <List jobs = {allData} />
+            <Grid container spacing={3} style = {{ width: '100%' }}> 
+                            <Grid item xs={12} md={6}  >
+                                <List 
+                                    jobs = {allData}
+                                    childClicked = {childClicked } 
+                                />
                             </Grid>
                             <Grid item xs={12} md={6}  >
                                 <Map
@@ -196,11 +136,10 @@ function HomeComponent() {
                                     setBounds = {setBounds}
                                     coordinates = {coordinates}
                                     jobs = {allData}
+                                    setChildClicked = {setChildClicked}
                                 />
                             </Grid>
-                        </Grid> */}
-                </div>
-            )}
+                        </Grid>
         </div>
 
     )

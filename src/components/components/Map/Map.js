@@ -3,13 +3,15 @@ import GoogleMapReact from 'google-map-react';
 import { Box,Button,Paper, Typography, useMediaQuery } from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 // import Rating from '@material-ui/lab';
+import  { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles';
 
-const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
+const Map = ({coordinates ,  setCoordinates,setBounds, jobs, setChildClicked}) => {
    
     const classes = useStyles();
     const isDesktop = useMediaQuery('(min-width:600px)');
+    // const [childClicked, setChildClicked] = useState(null);
 
 
     return(
@@ -26,7 +28,7 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
                     setCoordinates({ lat: e.center.lat, lng : e.center.lng });
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
                 }}
-                onChildClick={''}
+                onChildClick={(child) => setChildClicked(child) }
             >
                 {jobs?.map((job, i) =>(
                     <div

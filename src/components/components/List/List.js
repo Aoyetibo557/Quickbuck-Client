@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, createRef} from 'react';
 import {CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select} from '@material-ui/core';
 import useStyles from './styles';
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
-const List = ({jobs}) => {
+const List = ({jobs, childClicked}) => {
     
     const classes = useStyles();
     const [type,setType] = useState('week');
     const [preference, setPreference] = useState('all');
+    // const [elRefs, setElRefs] = useState([]);
+
+
+
+    console.log({childClicked});
+
+    // useEffect(() => {
+    //     const refs = Array(jobs.length).fill().map((_, i) => refs[i] || createRef());
+    //     setElRefs(refs);
+    // }, [jobs]);
 
   
     return(
@@ -33,8 +43,12 @@ const List = ({jobs}) => {
             <Grid container spacing={3} className={classes.list}>
                 {jobs?.map((job,i) => (
                     
-                    <Grid item key={i} xs={12}>
-                        <PlaceDetails job={job}/>
+                    <Grid  item key={i} xs={12}>
+                        <PlaceDetails 
+                            job={job}
+                            selected={Number(childClicked) == i  }   
+                            // refProp={ elRefs[i] } 
+                        />
                        
                     </Grid>
                 )).reverse()}

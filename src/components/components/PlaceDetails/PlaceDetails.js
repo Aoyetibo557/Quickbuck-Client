@@ -15,6 +15,7 @@ const PlaceDetails = ({ job, selected, refProp }) => {
   const [splitTags, setSplitTags] = useState([]);
   const [splitDescription, setSplitDescription] = useState([]);
 
+  if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start"})
 
   useEffect(() =>{
     let substring = job.tags.split(".");

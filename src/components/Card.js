@@ -4,8 +4,8 @@ import QueryString from 'qs';
 // import {BiArrowBack} from 'react-icons/bi';
 
 
-const baseURL = "http://localhost:9090/api";
-// const baseURL = "https://quickbuck-api.herokuapp.com/api";
+// const baseURL = "http://localhost:9090/api";
+const baseURL = "https://quickbuck-api.herokuapp.com/api";
 
 function Card({name, location, description, price, county, longitude, latitude, website, tag1, tag2, altTagTime, altTagType}) {
     const [cardErr, setCardErr] = useState("");
