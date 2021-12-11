@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { useAuth } from '../contexts/AuthContext';
 import QueryString from 'qs';
+import { Link } from 'react-router-dom';
 // import {BiArrowBack} from 'react-icons/bi';
 
 
-const baseURL = "http://localhost:9090/api";
-// const baseURL = "https://quickbuck-api.herokuapp.com/api";
+// const baseURL = "http://localhost:9090/api";
+const baseURL = "https://quickbuck-api.herokuapp.com/api";
 
 function Card({name, location, description, price, county, longitude, latitude, website, tag1, tag2, altTagTime, altTagType}) {
     const [cardErr, setCardErr] = useState("");
@@ -101,8 +102,9 @@ function Card({name, location, description, price, county, longitude, latitude, 
        
     }
 
+    
 
-    return (
+    return !success ? (
         <div className="card__container">
 
             
@@ -148,6 +150,11 @@ function Card({name, location, description, price, county, longitude, latitude, 
             </form>
 
             
+        </div>
+    ):(
+        <div>
+            <h3>{err}</h3>
+            <Link to="/home">Go to home page to view job</Link>
         </div>
     )
 }

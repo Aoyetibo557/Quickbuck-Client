@@ -32,7 +32,8 @@ const PlaceDetails = ({ job, selected, refProp }) => {
     <Box  display="flex"  >
       <CardMedia
         style={{ height: 275, width : 275 }}
-        image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1K6lHdNDXgkXbupvpgP8a7P_nwu06tNZmnnYCJOuNiczwcftvCNQDfU90IYtl-8m3Lws&usqp=CAU'}
+        // image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1K6lHdNDXgkXbupvpgP8a7P_nwu06tNZmnnYCJOuNiczwcftvCNQDfU90IYtl-8m3Lws&usqp=CAU'}
+        image ={`https://avatars.dicebear.com/api/micah/${job.name+`job`}.svg?mood[]=happy&mood[]=sad`}
         title={job.name}
       />
       <Card style = {{flex : 1 }}>

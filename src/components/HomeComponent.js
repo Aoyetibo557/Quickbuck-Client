@@ -18,8 +18,9 @@ import Map from "../components/components/Map/Map";
 import Geocode from "react-geocode";
 
 
-const baseURL = "http://localhost:9090/api";
-// const baseURL = "https://quickbuck-api.herokuapp.com/api";
+// const baseURL = "http://localhost:9090/api";
+const baseURL = "https://quickbuck-api.herokuapp.com/api";
+
 
 Geocode.setApiKey("AIzaSyAsiey1SMwJZPItXSjAGKWZ87i9EvkV0-0");
 // set response language. Defaults to english.
@@ -71,7 +72,9 @@ function HomeComponent() {
     // .jobs is added at the end of data because in the conroller, i resturn the data in a json format 
     // with a message asttached, so to add only the jobs into the data states here, .jobs is added
     const retrieveData = () => {
-        const URL = `${baseURL}/jobs/all`;
+        // const URL = `${baseURL}/jobs/all`;
+        const URL = `${baseURL}/jobs/findbycounty/richmond`;
+
         axios(URL)
         .then(response => {
             setAllData(response.data.jobs)
@@ -156,7 +159,7 @@ function HomeComponent() {
                 <h3>No data found</h3>
             ):(
                 <div className="home__body">
-                    <div  className="home__results">
+                    {/* <div  className="home__results">
                         {filteredData.map((job,index) => (
                             <Job 
                                 key = {job.id}
@@ -173,32 +176,25 @@ function HomeComponent() {
                                 rating = {job.rating}
                             />
                         )).reverse()}
-                    </div>
+                    </div> */}
 
-                    <div>
-                        <Map
-                            setCoordinates= {setCoordinates}
-                            setBounds = {setBounds}
-                            coordinates = {coordinates}
-                            jobs = {allData}
-                        />
-                    </div>
+                    <Grid container spacing={3}  style = {{ width: '100%' }}> 
+                        <Grid item xs={3} md={5}  >
+                            <List jobs = {allData} />
+                        </Grid>
+                        <Grid item xs={12} md={6}  >
+                            <Map
+                                
+                                setCoordinates= {setCoordinates}
+                                setBounds = {setBounds}
+                                coordinates = {coordinates}
+                                jobs = {allData}
+                            />
+                        </Grid>
+                    </Grid>
                 
 
-                        {/* <Grid container spacing={3} style = {{ width: '100%' }}> 
-                            <Grid item xs={3} md={6}  >
-                                <List jobs = {allData} />
-                            </Grid>
-                            <Grid item xs={12} md={6}  >
-                                <Map
-                                    
-                                    setCoordinates= {setCoordinates}
-                                    setBounds = {setBounds}
-                                    coordinates = {coordinates}
-                                    jobs = {allData}
-                                />
-                            </Grid>
-                        </Grid> */}
+                       
                 </div>
             )}
         </div>

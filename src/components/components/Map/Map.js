@@ -18,7 +18,7 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
                 bootstrapURLKeys= {{ key: 'AIzaSyAsiey1SMwJZPItXSjAGKWZ87i9EvkV0-0'}}
                 defaultCenter={coordinates}
                 center = {coordinates}
-                defaultZoom ={14}
+                defaultZoom ={13}
                 margin = {[50, 50, 50, 50]}
                 options={''}
                 onChange={(e) => {
@@ -53,9 +53,9 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs}) => {
                                         </Typography>
                                     </Box>
 
-                                    <Button variant="contained" style ={{ backgroundColor : "#76b5c5", color : "white" }} >
+                                    {/* <Button variant="contained" style ={{ backgroundColor : "#76b5c5", color : "white" }} >
                                         APPLY
-                                    </Button>
+                                    </Button> */}
                                     <Button size="small" variant="contained" style ={{ backgroundColor : "#c5768e", color: "white" }} >
                                         VIEW
                                     </Button>

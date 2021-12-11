@@ -9,7 +9,6 @@ const URL = "http://localhost:9090/api/jobs/findbycounty";
 
 
 
-
 export const getJobsData = async (county) => {
  
   try {
