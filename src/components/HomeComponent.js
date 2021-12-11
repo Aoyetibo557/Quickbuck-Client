@@ -37,7 +37,10 @@ function HomeComponent() {
     const [filteredData, setFilteredData] = useState(allData);
     const [isLoading, setIsLoading] = useState(true);
 
-    const [coordinates, setCoordinates] = useState({});
+    const [coordinates, setCoordinates] = useState({
+        lat : 40.755666 ,
+        lng :  -73.977339
+    });
     const [county, setCounty] = useState({});
     const [bounds, setBounds] = useState({});
     const [long, setLong] = useState({});
@@ -55,9 +58,9 @@ function HomeComponent() {
     // with a message asttached, so to add only the jobs into the data states here, .jobs is added
     const retrieveData = (countyN) => {
         console.log("countyN" +countyN);
-        // const URL = `${baseURL}/jobs/all`;
+        const URL = `${baseURL}/jobs/all`;
         // const URL = `${baseURL+county}`;
-        const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
+        // const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
         axios(URL)
         .then(response => {
             setAllData(response.data.jobs)
@@ -71,10 +74,10 @@ function HomeComponent() {
         navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
      
         setCoordinates({lat : latitude, lng : longitude});
-        setLong(longitude);
-        setLati(latitude);
+        setLong(coordinates.lng);
+        setLati(coordinates.lat);
         })
-    }, [coordinates.lat,coordinates.lng  ]);
+    }, [ ]);
 
     useEffect(() => {
     console.log(coordinates,bounds);
