@@ -15,6 +15,7 @@ import {getJobsData} from './api' ;
 import List from "../components/components/List/List"
 import { Grid } from '@mui/material';
 import Map from "../components/components/Map/Map";
+import Search from "./Search";
 import Geocode from "react-geocode";
 
 
@@ -34,8 +35,8 @@ Geocode.enableDebug();
 
 function HomeComponent() {
     const [allData, setAllData] = useState([]);
-    const [filteredData, setFilteredData] = useState(allData);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [filteredData, setFilteredData] = useState(allData);
+    // const [isLoading, setIsLoading] = useState(true);
 
     const [coordinates, setCoordinates] = useState({
         lat : 40.755666 ,
@@ -47,7 +48,12 @@ function HomeComponent() {
     const [lati, setLati] = useState({});
 
     const { setJobs } = useAuth(); //Context 
-    const [childClicked, setChildClicked] = useState(null);
+    // const [childClicked, setChildClicked] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [type,setType] = useState('week');
+    const [preference, setPreference] = useState(0);
+    const [filteredJobs, setFilteredJobs] = useState([]);
     
 
 
@@ -58,17 +64,24 @@ function HomeComponent() {
     // with a message asttached, so to add only the jobs into the data states here, .jobs is added
     const retrieveData = (countyN) => {
         console.log("countyN" +countyN);
-        const URL = `${baseURL}/jobs/all`;
+        // const URL = `${baseURL}/jobs/all`;
         // const URL = `${baseURL+county}`;
-        // const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
+        const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
         axios(URL)
         .then(response => {
+            setIsLoading(false);
             setAllData(response.data.jobs)
-            setFilteredData(response.data.jobs);
+            setFilteredJobs([]);
             setJobs(response.data.jobs);
+            // setIsLoading(false);
         })
        
     }
+
+    useEffect( () => {
+      const filteredJobs = allData.filter((job) => job.price > preference )
+      setFilteredJobs(filteredJobs);
+    },[preference] );
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
@@ -115,8 +128,11 @@ function HomeComponent() {
     // /queens /Queens County
 
 
-    console.log("again"+countyName);
-    retrieveData(county);
+    // console.log("again"+countyName);
+    if(bounds){
+      setIsLoading(true);
+      retrieveData(county);
+    }
   }, [coordinates, bounds]);
 
    
@@ -124,12 +140,20 @@ function HomeComponent() {
     return (
         <div className="homecomp">
             <Header />
+            <Search 
+              setCoordinates = {setCoordinates}
+            />
             
             <Grid container spacing={3} style = {{ width: '100%' }}> 
                             <Grid item xs={12} md={6}  >
                                 <List 
-                                    jobs = {allData}
-                                    childClicked = {childClicked } 
+                                    jobs = {filteredJobs.length ? filteredJobs : allData}
+                                    // childClicked = {childClicked } 
+                                    isLoading = {isLoading}
+                                    type = {type}
+                                    setType = {setType}
+                                    preference = {preference}
+                                    setPreference = {setPreference}
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}  >
@@ -138,8 +162,8 @@ function HomeComponent() {
                                     setCoordinates= {setCoordinates}
                                     setBounds = {setBounds}
                                     coordinates = {coordinates}
-                                    jobs = {allData}
-                                    setChildClicked = {setChildClicked}
+                                    jobs = {filteredJobs.length ? filteredJobs : allData}
+                                    // setChildClicked = {setChildClicked}
                                 />
                             </Grid>
                         </Grid>
