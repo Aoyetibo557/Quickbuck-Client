@@ -14,6 +14,7 @@ import {getJobsData} from './api' ;
 import List from "../components/components/List/List"
 import { Grid } from '@mui/material';
 import Map from "../components/components/Map/Map";
+import Search from "./Search";
 import Geocode from "react-geocode";
 
 import NoJobPic from "../assets/images/job-search.svg";
@@ -35,10 +36,13 @@ Geocode.enableDebug();
 
 function HomeComponent() {
     const [allData, setAllData] = useState([]);
-    const [filteredData, setFilteredData] = useState(allData);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [filteredData, setFilteredData] = useState(allData);
+    // const [isLoading, setIsLoading] = useState(true);
 
-    const [coordinates, setCoordinates] = useState({});
+    const [coordinates, setCoordinates] = useState({
+        lat : 40.755666 ,
+        lng :  -73.977339
+    });
     const [county, setCounty] = useState({});
     const [bounds, setBounds] = useState({});
     const [long, setLong] = useState({});
@@ -52,6 +56,12 @@ function HomeComponent() {
             setIsLoading(false)
         }, 6000)
     },[])
+    // const [childClicked, setChildClicked] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [type,setType] = useState('week');
+    const [preference, setPreference] = useState(0);
+    const [filteredJobs, setFilteredJobs] = useState([]);
     
 
 
@@ -66,22 +76,28 @@ function HomeComponent() {
         const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
         axios(URL)
         .then(response => {
+            setIsLoading(false);
             setAllData(response.data.jobs)
-            setFilteredData(response.data.jobs);
+            setFilteredJobs([]);
             setJobs(response.data.jobs);
             console.log(response.data)
         })
        
     }
 
+    useEffect( () => {
+      const filteredJobs = allData.filter((job) => job.price > preference )
+      setFilteredJobs(filteredJobs);
+    },[preference] );
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
      
         setCoordinates({lat : latitude, lng : longitude});
-        setLong(longitude);
-        setLati(latitude);
+        setLong(coordinates.lng);
+        setLati(coordinates.lat);
         })
-    }, [coordinates.lat,coordinates.lng  ]);
+    }, [ ]);
 
     useEffect(() => {
     console.log(coordinates,bounds);
@@ -117,7 +133,10 @@ function HomeComponent() {
 
 
     // console.log("again"+countyName);
-    retrieveData(county);
+    if(bounds){
+      setIsLoading(true);
+      retrieveData(county);
+    }
   }, [coordinates, bounds]);
 
    
@@ -125,44 +144,33 @@ function HomeComponent() {
     return (
         <div className="homecomp">
             <Header />
-           {!isLoading ? (
-                <Grid container spacing={3} style = {{ width: '100%' }}> 
-                <Grid item xs={12} md={6}  >
-                    
-                    <List 
-                        jobs = {allData}
-                        childClicked = {childClicked } 
-                    />
-
-                    {/* {allData.length > 1 ? (
-                        <List 
-                            jobs = {allData}
-                            childClicked = {childClicked } 
-                        />
-                    ):(
-                        <div className="no__results">
-                            <img src={NoJobPic} alt="No Job Found" />
-                            <h4>No Jobs in this County!</h4>
-                        </div>
-                    )} */}
-                    
-                </Grid>
-                <Grid item xs={12} md={6}  >
-                    <Map
-
-                        setCoordinates= {setCoordinates}
-                        setBounds = {setBounds}
-                        coordinates = {coordinates}
-                        jobs = {allData}
-                        setChildClicked = {setChildClicked}
-                    />
-                </Grid>
-            </Grid>
-           ):(
-               <div className="loading">
-                   <CircularProgress />
-               </div>
-           )}
+            <Search 
+              setCoordinates = {setCoordinates}
+            />
+            
+            <Grid container spacing={3} style = {{ width: '100%' }}> 
+                            <Grid item xs={12} md={6}  >
+                                <List 
+                                    jobs = {filteredJobs.length ? filteredJobs : allData}
+                                    // childClicked = {childClicked } 
+                                    isLoading = {isLoading}
+                                    type = {type}
+                                    setType = {setType}
+                                    preference = {preference}
+                                    setPreference = {setPreference}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={6}  >
+                                <Map
+                                    
+                                    setCoordinates= {setCoordinates}
+                                    setBounds = {setBounds}
+                                    coordinates = {coordinates}
+                                    jobs = {filteredJobs.length ? filteredJobs : allData}
+                                    // setChildClicked = {setChildClicked}
+                                />
+                            </Grid>
+                        </Grid>
         </div>
 
     )
