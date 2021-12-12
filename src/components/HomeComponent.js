@@ -9,13 +9,14 @@ import { useAuth } from '../contexts/AuthContext';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import PlugImage from '../assets/images/plug.svg';
-import JobDetails from './JobDetails';
 import {getJobsData} from './api' ;
 
 import List from "../components/components/List/List"
 import { Grid } from '@mui/material';
 import Map from "../components/components/Map/Map";
 import Geocode from "react-geocode";
+
+import NoJobPic from "../assets/images/job-search.svg";
 
 
 // const baseURL = "http://localhost:9090/api";
@@ -45,6 +46,12 @@ function HomeComponent() {
 
     const { setJobs } = useAuth(); //Context 
     const [childClicked, setChildClicked] = useState(null);
+
+    useEffect(() => {
+        setTimeout(()=> {
+            setIsLoading(false)
+        }, 6000)
+    },[])
     
 
 
@@ -54,7 +61,6 @@ function HomeComponent() {
     // .jobs is added at the end of data because in the conroller, i resturn the data in a json format 
     // with a message asttached, so to add only the jobs into the data states here, .jobs is added
     const retrieveData = (countyN) => {
-        console.log("countyN" +countyN);
         // const URL = `${baseURL}/jobs/all`;
         // const URL = `${baseURL+county}`;
         const URL = `${baseURL}/jobs/findbycounty/${countyN}`;
@@ -63,6 +69,7 @@ function HomeComponent() {
             setAllData(response.data.jobs)
             setFilteredData(response.data.jobs);
             setJobs(response.data.jobs);
+            console.log(response.data)
         })
        
     }
@@ -95,7 +102,7 @@ function HomeComponent() {
                 break;
               case "administrative_area_level_2":
                 countyName = response.results[0].address_components[i].long_name;
-                console.log("countyName" +countyName);
+                // console.log("countyName" +countyName);
                 setCounty(countyName);
                 break;
               case "country":
@@ -107,12 +114,9 @@ function HomeComponent() {
           }
         }
     });
-    // console.log(countyName)
-
-    // /queens /Queens County
 
 
-    console.log("again"+countyName);
+    // console.log("again"+countyName);
     retrieveData(county);
   }, [coordinates, bounds]);
 
@@ -121,25 +125,44 @@ function HomeComponent() {
     return (
         <div className="homecomp">
             <Header />
-            
-            <Grid container spacing={3} style = {{ width: '100%' }}> 
-                            <Grid item xs={12} md={6}  >
-                                <List 
-                                    jobs = {allData}
-                                    childClicked = {childClicked } 
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}  >
-                                <Map
-                                    
-                                    setCoordinates= {setCoordinates}
-                                    setBounds = {setBounds}
-                                    coordinates = {coordinates}
-                                    jobs = {allData}
-                                    setChildClicked = {setChildClicked}
-                                />
-                            </Grid>
-                        </Grid>
+           {!isLoading ? (
+                <Grid container spacing={3} style = {{ width: '100%' }}> 
+                <Grid item xs={12} md={6}  >
+                    
+                    <List 
+                        jobs = {allData}
+                        childClicked = {childClicked } 
+                    />
+
+                    {/* {allData.length > 1 ? (
+                        <List 
+                            jobs = {allData}
+                            childClicked = {childClicked } 
+                        />
+                    ):(
+                        <div className="no__results">
+                            <img src={NoJobPic} alt="No Job Found" />
+                            <h4>No Jobs in this County!</h4>
+                        </div>
+                    )} */}
+                    
+                </Grid>
+                <Grid item xs={12} md={6}  >
+                    <Map
+
+                        setCoordinates= {setCoordinates}
+                        setBounds = {setBounds}
+                        coordinates = {coordinates}
+                        jobs = {allData}
+                        setChildClicked = {setChildClicked}
+                    />
+                </Grid>
+            </Grid>
+           ):(
+               <div className="loading">
+                   <CircularProgress />
+               </div>
+           )}
         </div>
 
     )

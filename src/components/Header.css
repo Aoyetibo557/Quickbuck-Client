@@ -68,16 +68,16 @@
 }
 
 .dropdown__link {
-    width: 170px;
-    font-size: 15px;
+    /* width: 170px; */
+    font-size: 16px;
     text-decoration: none;
-    color: #fff;
+    color: #111;
     text-align: left;
     padding: 10px;
     opacity: 0.8;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    font-weight: 600;
 }
 
 .dropdown__link:hover {

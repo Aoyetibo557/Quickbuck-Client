@@ -8,6 +8,7 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles.js';
 import { red } from '@material-ui/core/colors';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const PlaceDetails = ({ job, selected, refProp }) => {
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -33,7 +34,7 @@ const PlaceDetails = ({ job, selected, refProp }) => {
     <Box  display="flex"  >
       <CardMedia
         style={{ height: 275, width : 275 }}
-        image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1K6lHdNDXgkXbupvpgP8a7P_nwu06tNZmnnYCJOuNiczwcftvCNQDfU90IYtl-8m3Lws&usqp=CAU'}
+        image={`https://avatars.dicebear.com/api/personas/${job.name+`job`}.svg?mood[]=happy&mood[]=sad`} 
         title={job.name}
       />
       <Card style = {{flex : 1 }}>
@@ -61,8 +62,10 @@ const PlaceDetails = ({ job, selected, refProp }) => {
               {/* {job.description} */}
           </Typography>
           <Box   display="flex" justifyContent="" style= {{}} >
-              <Button  variant="contained" color="primary"  >
-                  APPLY
+              <Button  variant="contained" color="default"  >
+                  <Link to={`/home/${job.jobId}`}>
+                    View Details
+                  </Link>
               </Button>&nbsp;&nbsp;&nbsp;
               <Button variant="contained" color="secondary">
                   TALK TO EMPLOYER

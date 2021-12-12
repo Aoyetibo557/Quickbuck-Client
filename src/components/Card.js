@@ -105,7 +105,6 @@ function Card({name, location, description, price, county, longitude, latitude, 
     return (
         <div className="card__container">
 
-            
             <div className="postjob__error">
             
                 {cardErr && <p>{cardErr}</p>}

@@ -12,6 +12,8 @@ import NewJob from './pages/NewJob';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import MyJobs from './pages/MyJobs';
+import JobDetail from './pages/JobDetail';
+import JobApplication from './pages/JobApplication';
 
 
 
@@ -41,7 +43,7 @@ function App() {
           </Route>
 
           <Route exact path="/home/:jobId" >
-            {!acctToken ? <Loginpage /> : <HomeComponent /> }
+            {!acctToken ? <Loginpage /> : <JobDetail /> }
           </Route>
          
           <Route exact path ="/signup" component={SignUpPage} />
@@ -61,6 +63,10 @@ function App() {
 
           <Route exact path="/myjobs" >
             {!acctToken ? <Loginpage /> : <MyJobs /> }
+          </Route>
+
+          <Route exact path="/home/application/:jobId" >
+            {!acctToken ? <Loginpage /> : <JobApplication /> }
           </Route>
 
         </Switch>

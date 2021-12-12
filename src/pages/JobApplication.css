@@ -1,0 +1,24 @@
+
+
+.jobapplication__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.check-icon {
+    font-size: 8rem;
+}
+
+.jobapplication__container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.jobapplication__container div h5 {
+    font-size: 1.4rem;
+}

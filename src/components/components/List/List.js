@@ -8,18 +8,9 @@ const List = ({jobs, childClicked}) => {
     const classes = useStyles();
     const [type,setType] = useState('week');
     const [preference, setPreference] = useState('all');
-    // const [elRefs, setElRefs] = useState([]);
 
+    // console.log({childClicked});
 
-
-    console.log({childClicked});
-
-    // useEffect(() => {
-    //     const refs = Array(jobs.length).fill().map((_, i) => refs[i] || createRef());
-    //     setElRefs(refs);
-    // }, [jobs]);
-
-  
     return(
         <div className={classes.container}>
             <Typography variant="h4">Jobs near you</Typography>

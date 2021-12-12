@@ -3,97 +3,29 @@
 .homecomp {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex-wrap: nowrap;
     height: 100%;
 }
 
-.home__top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 20px;
-}
-
-.search__bar {
-    padding: 7px;
-    width: 300px;
-    font-weight: 400;
-    font-size: 14px;
-}
-
-.search__select {
-    width: 100px;
-    padding: 7px;
-    border: .7px solid #000;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.home__body {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    /* height: 80vh; */
-    width: 90%;
-}
-
-.home__results {
+.no__results {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    /* align-items: center; */
-    margin-top: 20px;
-    margin-left: 20px;
     height: 100%;
 }
 
+.no__results img {
+    width: 25vw;
+    height: 150px;
+}
 
+.no__results h4 {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
 .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50px !important;
-    position: relative;
-    left: 50vw;
-}
-
-
-.error__div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    left: 30vw;
-}
-
-.error-img {
-    width: 45vw;
-    height: 45vh;
-    object-fit: contain;
-}
-
-.error__div div {
-    display: flex;
-    flex-direction: row;
-    width: 400px;
-    padding: 3px;
-}
-
-.error__div div h2 {
-    font-size: 3rem;
-    font-weight: 500;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.error__div div p {
-    font-size: 14px;
-}
-
-
-@media only screen and (max-width: 768px) {
-    
+    margin: 15%;
 }

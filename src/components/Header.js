@@ -28,15 +28,19 @@ function Header() {
             <nav className="header__nav">
 
                 <Link className="" to="/createjob" title="post a New Job">Post a New Job</Link>
-                {/* <Link className="header__link" to="/notifications" title="Notifications"> <MdNotificationsActive /> </Link> */}
-                <Link className="header__link dropdown"  title={acctDetails.userName}> <VscAccount />
+                <Link className="dropdown__link" title="setting" to="/settings" ><FiSettings /> Setting</Link>
+                <Link className="dropdown__link" title="my jobs" to="/myjobs" ><VscLayersActive /> My Jobs</Link>
+                <Link className="dropdown__link" title="account" to="/profile" ><VscAccount /> {acctDetails.userName}</Link>
+
+                {/* <Link className="header__link dropdown"  title={acctDetails.userName}> <VscAccount />
                     <div className="dropdown-content">
                         <Link className="dropdown__link" title="setting" to="/settings" ><FiSettings /> Setting</Link>
                         <Link className="dropdown__link" title="my jobs" to="/myjobs" ><VscLayersActive /> My Jobs</Link>
-                        {/* <Link className="dropdown__link" title="my jobs" to="/notifications" ><MdNotificationsActive /> Notifications</Link> */}
                         <Link className="dropdown__link" title="account" to="/profile" ><VscAccount /> {acctDetails.userName}</Link>
                     </div>
-                </Link>
+                </Link> */}
+
+                
                 <button className="" onClick={logOut} title="logout">Log out</button>
 
             </nav>
