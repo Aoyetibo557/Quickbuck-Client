@@ -9,6 +9,9 @@ import { VscComment } from "react-icons/vsc"
 import { Rating } from '@mui/material';
 import Review from '../components/Review';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // const baseURL = "http://localhost:9090/api";
 const baseURL = "https://quickbuck-api.herokuapp.com/api";
@@ -22,9 +25,13 @@ function JobDetail() {
     const [rating, setRating] = useState(0);
     const[review, setReview] = useState("");
     const [msg, setMsg] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [ errMsg, setErrMsg] = useState("");
+
 
     const [allReviews, setAllReviews] = useState([]);
 
+    const history = useHistory();
 
     const { jobId } = useParams();
     const [descp, setDescp] = useState([]);
@@ -118,13 +125,35 @@ function JobDetail() {
     const updateJobStatus = () => {
         const URL = `${baseURL}/jobs/update/${jobId}`
 
-        axios.put(URL)
+        const newJobstatus = {
+            jobstatus: "inactive",
+        }
+        setErrMsg("");
+        setIsLoading(true);
+       if(errMsg.length < 0) {
+           setIsLoading(true);
+       }else{
+        axios.put(URL, newJobstatus)
         .then(response => {
+            const data = response.data
+            if(!response.data.length > 1){
+                const error = (data && data.message) || response.status;
+                setErrMsg(error);
+                return error;
+            }
+            if(errMsg.length < 0) {
+
+            }
             console.log(response.data)
+            history.push(`/home/application/${jobId}`);
+            window.location = `/home/application/${jobId}`
         })
         .catch(error => {
-            console.log(error.message)
+            console.log(error);
+            setErrMsg("Sorry, an error occured! ",error.message);
+            setIsLoading(false);
         })
+       }
     }
 
 
@@ -134,6 +163,10 @@ function JobDetail() {
         <div className="jobdetail">
             <Header />
             <div className="jobdetail__container">
+
+                <div className="err__div"> 
+                    {errMsg && <p>{errMsg}</p>}
+                </div>
                 <div className="img__div">
                     <img className="jobdetail__img" src={`https://avatars.dicebear.com/api/personas/${data.name+`job`}.svg?mood[]=happy&mood[]=sad`} alt= "Job Detail Profile Pic" />
                 </div>
@@ -223,7 +256,13 @@ function JobDetail() {
                 </div>
 
                 <div className="apply__div">
-                    <Link onClick={updateJobStatus} to={`/home/application/${jobId}`} className="apply__div-btn secondary-btn">Apply</Link>
+                    {!isLoading ? (
+                        <button onClick={updateJobStatus}  className="apply__div-btn secondary-btn">Apply</button>
+                    ): (
+                        <Box sx={{ display: 'flex' }}>
+                            <CircularProgress />
+                        </Box>
+                    )}
                     <button onClick={() => alert("Apologies mate, This featue isn't available yet!")} className="apply__div-btn primary-btn">Talk to Job Poster</button>
                 </div>
             </div>

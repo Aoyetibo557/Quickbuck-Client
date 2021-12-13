@@ -66,10 +66,11 @@ const PlaceDetails = ({ job, selected, refProp }) => {
           <Box   display="flex" justifyContent="" style= {{}} >
               <Button disabled={job.jobstatus === "inactive" ? true : false} variant="contained" color="default"  >
                   <Link className={classes.link} to={`/home/${job.jobId}`}>
-                    View Details
+                    {/* View Details */}
+                    {job.jobstatus === "inactive" ? "Not Available" : "View Details"}
                   </Link>
               </Button>&nbsp;&nbsp;&nbsp;
-              <Button variant="contained" color="secondary">
+              <Button onClick={() => alert("Apologies Mate! this feature is currently not available.")} variant="contained" color="secondary">
                   TALK TO EMPLOYER
               </Button>
           </Box> &nbsp;&nbsp;&nbsp;

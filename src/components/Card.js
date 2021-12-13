@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useAuth } from '../contexts/AuthContext';
 import QueryString from 'qs';
-// import {BiArrowBack} from 'react-icons/bi';
 
 
 // const baseURL = "http://localhost:9090/api";
@@ -58,7 +57,7 @@ function Card({name, location, description, price, county, longitude, latitude, 
             latitude: latitude,
             longitude: longitude,
             // add the altTagTime and Type if tag2 is empty
-            tags: tag1 + " " + tag2.length < 1 ? altTagTime + " " + altTagType : tag2,
+            tags: tag1 + "." + tag2.length < 1 ? altTagTime + " " + altTagType : tag2,
             //all ratings are set to this untill someone rates them after job completion
             rating: 0,
             num_reviews: "",

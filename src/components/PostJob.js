@@ -56,7 +56,7 @@ function PostJob() {
     }
 
     const validateForm = () => {
-        if(name === "" || location === "" || description === "" || price === "" || tag1 === "" || tag2 === "" ){
+        if(name === "" || location === "" || county === "" || description === "" || price === "" || tag1 === "" || tag2 === "" ){
             return false
         }else{
             return true
