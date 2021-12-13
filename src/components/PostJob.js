@@ -128,7 +128,7 @@ function PostJob() {
 
                         <div className="postjob__form-innerdiv">
                             <select value={tag1} onChange={(e) => setTag1(e.target.value)} className="postjob__select" required name="jobtag1">
-                                <option>tag 1</option>
+                                <option vlaue="">tag 1</option>
                                 <option value="limited">Limited</option>
                                 <option value="project based">Project based</option>
                             </select>

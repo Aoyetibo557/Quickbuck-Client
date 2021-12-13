@@ -115,6 +115,18 @@ function JobDetail() {
         })
     }
 
+    const updateJobStatus = () => {
+        const URL = `${baseURL}/jobs/update/${jobId}`
+
+        axios.put(URL)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
+
 
   
 
@@ -211,7 +223,7 @@ function JobDetail() {
                 </div>
 
                 <div className="apply__div">
-                    <Link to={`/home/application/${jobId}`} className="apply__div-btn secondary-btn">I'm Intrested</Link>
+                    <Link onClick={updateJobStatus} to={`/home/application/${jobId}`} className="apply__div-btn secondary-btn">Apply</Link>
                     <button onClick={() => alert("Apologies mate, This featue isn't available yet!")} className="apply__div-btn primary-btn">Talk to Job Poster</button>
                 </div>
             </div>

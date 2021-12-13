@@ -146,6 +146,7 @@ function HomeComponent() {
             <Header />
             <Search 
               setCoordinates = {setCoordinates}
+              
             />
             
             <Grid container spacing={3} style = {{ width: '100%' }}> 

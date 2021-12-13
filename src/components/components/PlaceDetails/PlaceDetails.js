@@ -4,7 +4,7 @@ import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chi
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
-
+import { BsDot} from "react-icons/bs"
 import useStyles from './styles.js';
 import { red } from '@material-ui/core/colors';
 import { useEffect } from 'react';
@@ -30,7 +30,7 @@ const PlaceDetails = ({ job, selected, refProp }) => {
 
 
   return (
-    <Card elevation={2}>
+    <Card elevation={3}>
     <Box  display="flex"  >
       <CardMedia
         style={{ height: 275, width : 275 }}
@@ -40,7 +40,9 @@ const PlaceDetails = ({ job, selected, refProp }) => {
       <Card style = {{flex : 1 }}>
         <CardContent>
           <Box  display="flex" justifyContent="space-between"> 
-            <Typography  variant="h5">{job.name}</Typography>
+            <Typography  variant="h5">{job.name} 
+              {job.jobstatus === "inactive" ? <span className={classes.inactiveSpan}>({job.jobstatus})</span> : ""}
+            </Typography>
             <Rating name="read-only" value={Number(job.rating)} readOnly />
           </Box>
           
@@ -62,8 +64,8 @@ const PlaceDetails = ({ job, selected, refProp }) => {
               {/* {job.description} */}
           </Typography>
           <Box   display="flex" justifyContent="" style= {{}} >
-              <Button  variant="contained" color="default"  >
-                  <Link to={`/home/${job.jobId}`}>
+              <Button disabled={job.jobstatus === "inactive" ? true : false} variant="contained" color="default"  >
+                  <Link className={classes.link} to={`/home/${job.jobId}`}>
                     View Details
                   </Link>
               </Button>&nbsp;&nbsp;&nbsp;
@@ -75,6 +77,10 @@ const PlaceDetails = ({ job, selected, refProp }) => {
             {splitTags.map((tag) => (
               <Chip key={tag} size="small" label={tag} className={classes.chip} />
             ))}
+            
+            {job.jobstatus === "inactive" ? (
+              <Chip size="small" label={`${job.jobstatus}`} key={job.jobstatus} className={classes.inactiveChip} />
+            ): ""}
 
           </Box>
   

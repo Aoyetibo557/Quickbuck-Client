@@ -11,4 +11,17 @@ export default makeStyles(() => ({
   spacing: {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
   },
+  dot:{
+    color: 'red', fontSize: "3rem", textAlign: 'center',
+  },
+  inactiveChip: {
+    color: 'red',
+  },
+  inactiveSpan: {
+    fontSize: "13px", fontWeight: '500', fontStyle: 'italic', marginLeft: '3px', color:'red'
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  
 }));
