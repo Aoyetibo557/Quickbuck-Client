@@ -1,0 +1,33 @@
+.applicationcomp__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-bottom: .7px solid rgba(0, 0, 0, 0.157);
+}
+
+.applicationcomp__container:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.applicationcomp__container div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__img {
+    width: 60px;
+    height: 60px;
+    border: .7px solid #000;
+    border-radius: 999px;
+}
+
+
+.applicationcomp__container div h5 {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-left: 10px;
+}

@@ -47,6 +47,7 @@ export function AuthProvider( {children, reducer}) {
         logOut,
         setJobs,
         jobs,
+        parseToken,
     }
     
     return (

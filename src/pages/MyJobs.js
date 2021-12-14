@@ -72,12 +72,16 @@ function MyJobs() {
                 <div>
                     <h4>Active Jobs</h4>
                     <div>
-                        
+                        <p>You currently have no active jobs</p>
                     </div>
                 </div>
 
                 <div>
                     <h4>Completed Jobs</h4>
+
+                    <div>
+                        <p>You currently have no Completed jobs</p>
+                    </div>
                 </div>
 
             </div>

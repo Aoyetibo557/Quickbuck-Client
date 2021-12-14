@@ -14,6 +14,7 @@ import Settings from './pages/Settings';
 import MyJobs from './pages/MyJobs';
 import JobDetail from './pages/JobDetail';
 import JobApplication from './pages/JobApplication';
+import JobApplicants from './pages/JobApplicants';
 
 
 
@@ -67,6 +68,10 @@ function App() {
 
           <Route exact path="/home/application/:jobId" >
             {!acctToken ? <Loginpage /> : <JobApplication /> }
+          </Route>
+
+          <Route exact path="/applicants/:jobId" >
+            {!acctToken ? <Loginpage /> : <JobApplicants /> }
           </Route>
 
         </Switch>
