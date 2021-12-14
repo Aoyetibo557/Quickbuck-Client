@@ -27,7 +27,7 @@ function Header() {
             <Link className="header__logo" to="/home" title="QuickBuck" >QuickBuck</Link>
             <nav className="header__nav">
 
-                <Link className="" to="/createjob" title="post a New Job" >Post a New Job</Link>
+                <Link className="linkMain" to="/createjob" title="post a New Job" >Post a New Job</Link>
                 <Link className="dropdown__link" title="setting" to="/settings" ><FiSettings /> Setting</Link>
                 <Link className="dropdown__link" title="my jobs" to="/myjobs" ><VscLayersActive /> My Jobs</Link>
                 <Link className="dropdown__link" title="account" to="/profile" ><VscAccount /> {acctDetails.userName}</Link>
