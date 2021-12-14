@@ -57,6 +57,11 @@
     
 }
 
+.linkMain{
+    color : rgb(255, 255, 255);
+    /* border-color: #fff; */
+}
+
 .dropdown:hover .dropdown-content {
     height: 190px;
     width: 190px;
@@ -71,7 +76,7 @@
     /* width: 170px; */
     font-size: 16px;
     text-decoration: none;
-    color: #111;
+    color: rgb(255, 255, 255);
     text-align: left;
     padding: 10px;
     opacity: 0.8;

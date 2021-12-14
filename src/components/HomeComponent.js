@@ -59,7 +59,7 @@ function HomeComponent() {
     // const [childClicked, setChildClicked] = useState(null);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [type,setType] = useState('month');
+    const [type,setType] = useState('All-Types');
     const [preference, setPreference] = useState(0);
     const [filteredJobs, setFilteredJobs] = useState([]);
     
@@ -91,7 +91,7 @@ function HomeComponent() {
     },[preference] );
 
     useEffect( () => {
-      const filteredJobs = allData.filter((job) => job.tags.split(".")[0] == type )
+      const filteredJobs = allData.filter((job) => job.tags.split(".")[0] === type )
       setFilteredJobs(filteredJobs);
     },[type] );
 
