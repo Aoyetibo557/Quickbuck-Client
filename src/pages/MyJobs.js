@@ -45,34 +45,43 @@ function MyJobs() {
                 <div>
                     <h4>My Jobs</h4>
                     <div>
-                        {userJobs.map((job, idx)=> (
-                            <Job 
-                                key = {job.id}
-                                jobId = {job.jobId}
-                                name= {job.name}
-                                location={job.joblocation}
-                                price={job.price}
-                                descp ={job.description}
-                                author={job.author}
-                                status={job.jobstatus}
-                                tags = {job.tags}
-                                county_name = {job.county_name}
-                                website = {job.website}
-                                rating = {job.rating}
-                            />
-                        )).reverse()}
-                        
+                        {userJobs.length < 1 ? (
+                            <div>
+                                <p>There are currently no posted jobs for this account!</p>
+                            </div>
+                        ):(
+                            userJobs.map((job, idx)=> (
+                                <Job 
+                                    key = {job.id}
+                                    jobId = {job.jobId}
+                                    name= {job.name}
+                                    location={job.joblocation}
+                                    price={job.price}
+                                    descp ={job.description}
+                                    author={job.author}
+                                    status={job.jobstatus}
+                                    tags = {job.tags}
+                                    county_name = {job.county_name}
+                                    website = {job.website}
+                                    rating = {job.rating}
+                                />
+                            )).reverse()
+                        )}
                     </div>
                 </div>                    
                 <div>
                     <h4>Active Jobs</h4>
                     <div>
-                        
+                        <p>You currently have no active jobs</p>
                     </div>
                 </div>
 
                 <div>
                     <h4>Completed Jobs</h4>
+
+                    <div>
+                        <p>You currently have no Completed jobs</p>
+                    </div>
                 </div>
 
             </div>

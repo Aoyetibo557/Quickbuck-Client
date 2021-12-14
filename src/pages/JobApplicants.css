@@ -1,0 +1,34 @@
+
+.applicants__container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.applicants__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.applicants__header div h5 {
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0.6;
+}
+
+.no__applicants {
+    display: grid;
+    place-content: center;
+    height: 400px;
+}
+
+.no__applicants h5 {
+    font-weight: 700;
+    font-size: 1.9rem;
+    opacity: 0.3;
+    text-transform:uppercase;
+}

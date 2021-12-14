@@ -12,6 +12,9 @@ import NewJob from './pages/NewJob';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import MyJobs from './pages/MyJobs';
+import JobDetail from './pages/JobDetail';
+import JobApplication from './pages/JobApplication';
+import JobApplicants from './pages/JobApplicants';
 
 
 
@@ -21,7 +24,8 @@ function App() {
   const {acctToken} = Token();
 
   useEffect(() => {
-    console.log(acctToken)
+    console.log(acctToken);
+    // console.clear();
   },[acctToken])
 
   const history = createBrowserHistory()
@@ -40,7 +44,7 @@ function App() {
           </Route>
 
           <Route exact path="/home/:jobId" >
-            {!acctToken ? <Loginpage /> : <HomeComponent /> }
+            {!acctToken ? <Loginpage /> : <JobDetail /> }
           </Route>
          
           <Route exact path ="/signup" component={SignUpPage} />
@@ -60,6 +64,14 @@ function App() {
 
           <Route exact path="/myjobs" >
             {!acctToken ? <Loginpage /> : <MyJobs /> }
+          </Route>
+
+          <Route exact path="/home/application/:jobId" >
+            {!acctToken ? <Loginpage /> : <JobApplication /> }
+          </Route>
+
+          <Route exact path="/applicants/:jobId" >
+            {!acctToken ? <Loginpage /> : <JobApplicants /> }
           </Route>
 
         </Switch>

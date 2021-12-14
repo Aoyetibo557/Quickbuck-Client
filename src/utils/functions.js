@@ -1,32 +1,4 @@
-import axios from "axios";
 
-const baseURL = `https://maps.googleapis.com/maps/api/geocode/json?`;
-
-var arr = []
-
-const geocode = (location) => {
-
-    axios.get(baseURL, {
-        params: {
-            address: location,
-            // key: process.env.MAPS_API,
-            key: "AIzaSyDNclWfUUv5s9_0hgEd6SvZGfVVexJSo2E"
-        }
-    }).then((response) => {
-        // console.log(response.data.results[0]);
- 
-        //Geometry Details
-        arr = response.data.results[0].geometry.location;
-        // response.data.results[0].geometry.location.lng
-        // response.data.results[0].geometry.location.lat;
-        // console.log("l&l", long, lat)
-        
-    })
-    .catch((error) => {
-        console.log(error)
-    })
-
-}
 
 // Stripe card number validation
 
@@ -71,6 +43,4 @@ const stripeCardExpirValidation = (value) => {
     }
 };
 
-
-
-export {geocode, arr, stripeCardNumberValidation, stripeCardExpirValidation}
+export {stripeCardNumberValidation, stripeCardExpirValidation}

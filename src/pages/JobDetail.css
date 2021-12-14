@@ -1,0 +1,248 @@
+.jobdetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+.jobdetail__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 50vw;
+    padding: 10px;
+}
+
+
+.img__div {
+    display: grid;
+    place-content: center;
+}
+
+.jobdetail__img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    border-radius: 999px;    
+}
+
+.jobdetail__titlediv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.jobdetail__title{
+    font-size: 2rem;
+    font-weight: 500;
+
+}
+
+.jobdetail__author {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.btn__div {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.jobdetail__votebtn {
+    padding: 10px;
+    width: 100px;
+    margin-left: 5px;
+    border: .7px solid rgba(0, 0, 0, 0.164);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.jobdetail__votebtn:hover {
+    opacity: 1;
+    transition: all ease-in 0.3s;
+    /* transform: scale(.75); */
+}
+
+.votebtn__active {
+    background: blueviolet;
+    color: #fff;
+}
+
+.details__div {
+    margin-top: 20px;
+}
+
+.description__div {
+    width: 50vw;
+    margin-bottom: 20px;
+}
+
+.jobdetail__description {
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: overline;
+}
+
+.description__p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.reviews__div {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews__div-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reviews__div-top h5 {
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: overline;
+}
+
+.reviews__btn {
+    padding: 10px;
+    width: 150px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background: transparent;
+    font-size: 17px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.reviews__btn:hover{
+    opacity: 1;
+    transition: all ease .3s;
+    transform: scale(0.9);
+}
+
+.emptyreviews {
+    height: 200px;
+    display: grid;
+    place-content: center;
+}
+
+.emptyreviews p{
+    font-size: 1.4rem;
+    opacity: 0.3;
+    font-weight: 600;
+}
+
+
+.apply__div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.apply__div-btn {
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+}   
+
+.secondary-btn {
+    background-color: blueviolet;
+    color: #dadada;
+    
+}
+
+.primary-btn {
+    background-color: red;
+    color: #dadada;
+}
+
+.apply__div-btn:hover {
+    opacity: 1;
+    color: #fff;
+    transition: all ease .3s;
+    transform: scale(1.07);
+}
+
+.apply__div-btn:active {
+    transform: scale(.75);
+}
+
+.addreview__form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.addreview__form__input-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.addreview__form div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.addreview__form div input {
+    padding: 5px;
+    width: 22vw;
+    font-size: 12px;
+}
+
+.review__textarea {
+    padding: 10px;
+    width: 50vw;
+    height: 150px;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.addreview__form div button {
+    padding: 10px;
+    font-size: 13px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+
+}
+
+.err__div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.err__div p {
+    color: red;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+    background-color: #f7f7ff;
+}

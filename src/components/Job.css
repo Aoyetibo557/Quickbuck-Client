@@ -2,9 +2,8 @@
 .job {
     display: flex;
     flex-direction: row;
-    width: 800px;
+    width: 700px;
     align-items: center;
-    justify-content: space-evenly;
     background-color: whitesmoke;
     padding: 10px;
     margin-top: 15px;
@@ -98,4 +97,10 @@
     border-radius: 999px;
     border: 1px solid #999;
     margin-right: 20px;
+}
+
+
+.status {
+    color: red;
+    font-size: 4rem;
 }

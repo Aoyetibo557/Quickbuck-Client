@@ -1,0 +1,174 @@
+
+.deletebox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(38, 45, 63);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 60%;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.close__btn {
+
+}
+
+.delete__h3 {
+    position: absolute;
+    top: 12%;
+    font-size: 35px;
+    color: rgb(53, 53, 53);
+    transform: translate(-100px);
+    opacity: 0;
+    user-select: none;
+}
+
+.sub__heading {
+    position: absolute;
+    top: 25%;
+    width: 60%;
+    text-align: center;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.493);
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 1px;
+    transform: translate(-100px);
+    opacity: 0;
+}
+
+.container p{
+    user-select: none;
+}
+
+.warning{
+    position: relative;
+    top: 5%;
+    width: 80%;
+    height: 120px;
+    border-radius: 10px;
+    background-color: rgba(255, 143, 116, 0.116);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+}
+
+#allclose {
+    position: absolute;
+    right: 5%;
+    top:5%;
+    font-size: 10px;
+    color: rgba(87, 89, 117, 0.294);
+    cursor: pointer;
+}
+
+#allclose:hover {
+    color: rgb(66, 66, 66);
+}
+
+
+.warn__para {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    padding: 20px;
+    width: 75%;
+    color: rgb(92, 92, 92);
+    opacity: 0;
+}
+
+.cancel {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 150%;
+    height: 50%;
+    border: 2px solid rgb(87, 89, 117);
+    background-color: transparent;
+    border-radius: 5px;
+    color: rgb(87, 89, 117);
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+.yes__delete {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 220px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(255, 94, 94);
+    transform: translateY(100px);
+    opacity: 0;
+}
+.deletebox button {
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+.container.active {
+    width: 500px;
+    height: 450px;
+    transition: .1s;
+}
+
+.container.active .yes__delete {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 1s;
+    transition-delay: .3s;
+}
+
+.container.active .cancel {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 1s;
+    transition-delay: .3s;
+}
+
+.container.active h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 1s;
+}
+
+.container.active .sub__heading {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 1s;
+    transition-delay: .3s;
+}
+
+.container.active .warning {
+    opacity: 1;
+    transition: 1s;
+    transition-delay: .6s;
+}
+
+.container.active .warn__para {
+    opacity: 1;
+}
+
+.container.active .close__btn {
+    opacity: 1;
+}
