@@ -18,13 +18,13 @@ const Search = ({ setCoordinates }) => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color=''>
       <Toolbar className={classes.toolbar}>
  
         <Box display="flex">
-          {/* <Typography variant="h6" className={classes.title}>
-            Explore new places
-          </Typography> */}
+          <Typography variant="h6" className={classes.title}>
+            Search
+          </Typography>
           <Autocomplete onLoad = {onLoad} onPlaceChanged={onPlaceChanged} >
             <div className={classes.search}>
               <div className={classes.searchIcon}>

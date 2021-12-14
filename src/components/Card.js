@@ -24,6 +24,13 @@ function Card({name, location, description, price, county, longitude, latitude, 
         console.log(name, description, price, longitude, latitude, tag1, tag2, website, location)
     },[])
 
+    useEffect(() =>{
+        console.log(name)
+        console.log(tag1)
+        console.log(tag2)
+    },[tag1,tag2,name]);
+    
+
     const cardValidation = () => {
         if(err === "Content can not be empty!" || cardName === "" || cardExpDate === "" ||cardCvv === "" || cardName === "") {
             setSuccess(false);
@@ -39,6 +46,7 @@ function Card({name, location, description, price, county, longitude, latitude, 
     const handleSubmit = (ev) => {
         ev.preventDefault();
         createJob();
+        console.log(tag1,tag2)
     }
 
     const generateUniqueId = () => {
@@ -57,7 +65,7 @@ function Card({name, location, description, price, county, longitude, latitude, 
             latitude: latitude,
             longitude: longitude,
             // add the altTagTime and Type if tag2 is empty
-            tags: tag1 + "." + tag2.length < 1 ? altTagTime + " " + altTagType : tag2,
+            tags: tag2.length < 1 ? altTagTime + " " + altTagType : tag1 + "." +tag2,
             //all ratings are set to this untill someone rates them after job completion
             rating: 0,
             num_reviews: "",

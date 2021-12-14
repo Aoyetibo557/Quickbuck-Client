@@ -34,7 +34,7 @@ const List = ({jobs,  isLoading, type, setType, preference, setPreference}) => {
                     <FormControl className={classes.formControl}>
                     <InputLabel>Type</InputLabel>
                     <Select value={type} onChange={(e)=> setType(e.target.value)} >
-                        <MenuItem value= "week" > Less than week</MenuItem>
+                        <MenuItem value= "Limited" > Limited</MenuItem>
                         <MenuItem value="month">Less than a month</MenuItem>
                         <MenuItem value="moreMonth">More than a month</MenuItem>
                     </Select>

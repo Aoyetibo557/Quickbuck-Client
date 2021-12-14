@@ -64,7 +64,9 @@ function PostJob() {
     }
 
 
-
+    // useEffect(() =>{
+    //     console.log(tag1)
+    // },[tag1]);
     
 
     const handleNext = (ev) => {
@@ -128,9 +130,9 @@ function PostJob() {
 
                         <div className="postjob__form-innerdiv">
                             <select value={tag1} onChange={(e) => setTag1(e.target.value)} className="postjob__select" required name="jobtag1">
-                                <option vlaue="">tag 1</option>
-                                <option value="limited">Limited</option>
-                                <option value="project based">Project based</option>
+                                <option value="Limited">Marketing</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Business">Business</option>
                             </select>
 
                             <select value={tag2} onInput={(e) => setTag2(e.target.value)}className="postjob__select" required name="jobtag2">

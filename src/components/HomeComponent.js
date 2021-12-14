@@ -40,8 +40,8 @@ function HomeComponent() {
     // const [isLoading, setIsLoading] = useState(true);
 
     const [coordinates, setCoordinates] = useState({
-        lat : 40.755666 ,
-        lng :  -73.977339
+        // lat : 40.755666 ,
+        // lng :  -73.977339
     });
     const [county, setCounty] = useState({});
     const [bounds, setBounds] = useState({});
@@ -49,7 +49,7 @@ function HomeComponent() {
     const [lati, setLati] = useState({});
 
     const { setJobs } = useAuth(); //Context 
-    const [childClicked, setChildClicked] = useState(null);
+    // const [childClicked, setChildClicked] = useState(null);
 
     useEffect(() => {
         setTimeout(()=> {
@@ -59,7 +59,7 @@ function HomeComponent() {
     // const [childClicked, setChildClicked] = useState(null);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [type,setType] = useState('week');
+    const [type,setType] = useState('month');
     const [preference, setPreference] = useState(0);
     const [filteredJobs, setFilteredJobs] = useState([]);
     
@@ -90,6 +90,11 @@ function HomeComponent() {
       setFilteredJobs(filteredJobs);
     },[preference] );
 
+    useEffect( () => {
+      const filteredJobs = allData.filter((job) => job.tags.split(".")[0] == type )
+      setFilteredJobs(filteredJobs);
+    },[type] );
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords : {latitude, longitude} }) => {
      
@@ -106,7 +111,6 @@ function HomeComponent() {
     let countyName;
     Geocode.fromLatLng( coordinates.lat,coordinates.lng) 
     .then(response => {
-
         for (let i = 0; i < response.results[0].address_components.length; i++) {
           for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
             switch (response.results[0].address_components[i].types[j]) {
@@ -129,6 +133,8 @@ function HomeComponent() {
             }
           }
         }
+    } ).catch(error=>{
+      console.log(error);
     });
 
 
@@ -141,40 +147,39 @@ function HomeComponent() {
 
    
 
-    return (
-        <div className="homecomp">
-            <Header />
-            <Search 
-              setCoordinates = {setCoordinates}
-              
-            />
-            
-            <Grid container spacing={3} style = {{ width: '100%' }}> 
-                            <Grid item xs={12} md={6}  >
-                                <List 
-                                    jobs = {filteredJobs.length ? filteredJobs : allData}
-                                    // childClicked = {childClicked } 
-                                    isLoading = {isLoading}
-                                    type = {type}
-                                    setType = {setType}
-                                    preference = {preference}
-                                    setPreference = {setPreference}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}  >
-                                <Map
-                                    
-                                    setCoordinates= {setCoordinates}
-                                    setBounds = {setBounds}
-                                    coordinates = {coordinates}
-                                    jobs = {filteredJobs.length ? filteredJobs : allData}
-                                    // setChildClicked = {setChildClicked}
-                                />
-                            </Grid>
-                        </Grid>
-        </div>
+  return (
+    <div className="homecomp">
+      <Header />
 
-    )
+        
+      <Grid container spacing={3} style = {{ width: '100%' }}> 
+        <Grid item xs={12} md={6}  >
+          <Search 
+            setCoordinates = {setCoordinates}
+          />
+          <List 
+              jobs = {filteredJobs.length ? filteredJobs : allData}
+              // childClicked = {childClicked } 
+              isLoading = {isLoading}
+              type = {type}
+              setType = {setType}
+              preference = {preference}
+              setPreference = {setPreference}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}  >
+          <Map   
+            setCoordinates= {setCoordinates}
+            setBounds = {setBounds}
+            coordinates = {coordinates}
+            jobs = {filteredJobs.length ? filteredJobs : allData}
+            // setChildClicked = {setChildClicked}
+          />
+        </Grid>
+      </Grid>
+    </div>
+
+  )
 }
 
 export default HomeComponent

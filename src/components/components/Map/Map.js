@@ -28,7 +28,7 @@ const Map = ({coordinates ,  setCoordinates,setBounds, jobs, setChildClicked}) =
                     setCoordinates({ lat: e.center.lat, lng : e.center.lng });
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
                 }}
-                onChildClick={(child) => setChildClicked(child) }
+                
             >
                 {jobs?.map((job, i) =>(
                     <div
