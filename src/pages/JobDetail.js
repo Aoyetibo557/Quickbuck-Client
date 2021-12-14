@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { useAuth } from '../contexts/AuthContext';
 
 // const baseURL = "http://localhost:9090/api";
 const baseURL = "https://quickbuck-api.herokuapp.com/api";
@@ -34,6 +35,8 @@ function JobDetail() {
     const history = useHistory();
 
     const { jobId } = useParams();
+    const { acctDetails } = useAuth();
+
     const [descp, setDescp] = useState([]);
 
     const getJobDetails = async() => {
@@ -122,38 +125,77 @@ function JobDetail() {
         })
     }
 
-    const updateJobStatus = () => {
-        const URL = `${baseURL}/jobs/update/${jobId}`
+    // const updateJobStatus = () => {
+    //     const URL = `${baseURL}/jobs/update/${jobId}`
 
-        const newJobstatus = {
-            jobstatus: "inactive",
+    //     const newJobstatus = {
+    //         jobstatus: "inactive",
+    //     }
+    //     setErrMsg("");
+    //     setIsLoading(true);
+    //    if(errMsg.length < 0) {
+    //        setIsLoading(true);
+    //    }else{
+    //     axios.put(URL, newJobstatus)
+    //     .then(response => {
+    //         const data = response.data
+    //         if(!response.data.length > 1){
+    //             const error = (data && data.message) || response.status;
+    //             setErrMsg(error);
+    //             return error;
+    //         }
+           
+    //         console.log(response.data)
+    //         history.push(`/home/application/${jobId}`);
+    //         window.location = `/home/application/${jobId}`
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //         setErrMsg("Sorry, an error occured! ",error.message);
+    //         setIsLoading(false);
+    //     })
+    //    }
+    // }
+
+    const sendApplication = () => {
+        const URL = `${baseURL}/jobapplications/createapplication`;
+        const params = {
+            jobId: jobId,
+            author: acctDetails.name,
+            status: "applied"
         }
-        setErrMsg("");
-        setIsLoading(true);
-       if(errMsg.length < 0) {
-           setIsLoading(true);
-       }else{
-        axios.put(URL, newJobstatus)
-        .then(response => {
-            const data = response.data
-            if(!response.data.length > 1){
-                const error = (data && data.message) || response.status;
-                setErrMsg(error);
-                return error;
-            }
-            if(errMsg.length < 0) {
 
-            }
-            console.log(response.data)
-            history.push(`/home/application/${jobId}`);
-            window.location = `/home/application/${jobId}`
-        })
-        .catch(error => {
-            console.log(error);
-            setErrMsg("Sorry, an error occured! ",error.message);
-            setIsLoading(false);
-        })
-       }
+        const options = {
+            method: "POST",
+            headers: {'Content-Type':'application/x-www-form-urlencoded'}, // this line is important, if this content-type is not set it wont work
+            body: QueryString.stringify(params)
+        }
+        setErrMsg("")
+        setIsLoading(true)
+
+        if(errMsg.length < 0) {
+            setIsLoading(true)
+        }else{
+            fetch(URL, options)
+            .then(response => {
+                const data = response.json()
+                if(!response.ok){
+                    const error = (data && data.message) || response.status;
+                    console.log(data)
+                    setErrMsg("Your application for this job already exist on file!")
+                    return error;
+                }
+                console.log(data)
+                history.push(`/home/application/${jobId}`);
+                window.location = `/home/application/${jobId}`
+                
+            }).catch(error => {
+                console.log(error.message)
+                setErrMsg(error.message)
+                
+            })
+        }
+       
     }
 
 
@@ -244,7 +286,7 @@ function JobDetail() {
                                     </div>
 
                                     <div>
-                                        <button onClick={handleClick} className="primary-btn">Add Review!</button>
+                                        <button disabled ={data.author === acctDetails.name ? "false" : "true"} onClick={handleClick} className="primary-btn">Add Review!</button>
                                     </div>
 
 
@@ -255,16 +297,23 @@ function JobDetail() {
                     </div>
                 </div>
 
-                <div className="apply__div">
-                    {!isLoading ? (
-                        <button onClick={updateJobStatus}  className="apply__div-btn secondary-btn">Apply</button>
-                    ): (
-                        <Box sx={{ display: 'flex' }}>
-                            <CircularProgress />
-                        </Box>
-                    )}
-                    <button onClick={() => alert("Apologies mate, This featue isn't available yet!")} className="apply__div-btn primary-btn">Talk to Job Poster</button>
-                </div>
+                {data.author === acctDetails.name ? (
+                    <div>
+                    </div>
+                ): (
+                    <div className="apply__div">
+                        {!isLoading || errMsg.length >  0 ? (
+                            <button onClick={sendApplication}  className="apply__div-btn secondary-btn">Apply</button>
+                        ): (
+                            <Box sx={{ display: 'flex' }}>
+                                <CircularProgress />
+                            </Box>
+                        )}
+                        <button onClick={() => alert("Apologies mate, This featue isn't available yet!")} className="apply__div-btn primary-btn">Talk to Job Poster</button>
+                    </div>
+                )}
+
+               
             </div>
         </div>
     )

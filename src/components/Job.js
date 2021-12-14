@@ -62,25 +62,27 @@ function Job({category, jobId, name, location, county_name, website, price, desc
                     <div>
                         <button title="Chat Button" className="job__btn" onClick={() => setActive(true)} >Delete</button>
                     
-                        <a className="job__links" title={website} href={`${website}`} target="_blank" rel="noreferrer">{website}</a>
+                        {/* <a className="job__links" title={website} href={`${website}`} target="_blank" rel="noreferrer">{website}</a> */}
                         <Link to = {`/home/${jobId}`} onClick={setJobId} className="job__links" title="View Details" >
                             View Details 
+                            {/* <BsBoxArrowUpRight className="btn-icon" /> */}
+                        </Link>
+
+                        <Link className="job__links" to={`/applicants/${jobId}`} >
+                            View Applicants
                             <BsBoxArrowUpRight className="btn-icon" />
                         </Link>
                     </div>
                     <p title="Job Price" className="job__price">${price}/hr</p>
                 </div>
 
-                <div className="job__tags">
+                {/* <div className="job__tags">
                     {splitTags.map((tag, idx) => (
                         <span title="tags" key={idx}>{tag}</span>
                     ))}
-                </div>
+                </div> */}
             </div>
 
-            {/* <div>
-                <DeleteBox active={active} />
-            </div> */}
         </div>
     )
 }

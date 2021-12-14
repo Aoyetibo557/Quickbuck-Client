@@ -65,7 +65,9 @@ function Card({name, location, description, price, county, longitude, latitude, 
             latitude: latitude,
             longitude: longitude,
             // add the altTagTime and Type if tag2 is empty
+
             tags: tag2.length < 1 ? altTagTime + " " + altTagType : tag1 + "." +tag2,
+
             //all ratings are set to this untill someone rates them after job completion
             rating: 0,
             num_reviews: "",
